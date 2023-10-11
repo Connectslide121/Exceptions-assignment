@@ -8,7 +8,7 @@ namespace Exceptions_assignment
 {
     public class Methods
     {
-        public static List<int> StringToNumbersArrayConverter(string inputString)
+        public static List<int> StringToListConverterStringArray(string inputString)
         {
             List<int> NumbersList = new List<int>();
             
@@ -32,6 +32,32 @@ namespace Exceptions_assignment
                 .ToList();
 
             return NumbersListSorted;            
+        }
+
+        public static List<int> StringToListConverterCharArray(string inputString)
+        {
+            List<int> NumbersList = new List<int>();
+
+            char[] inputCharArray = inputString.ToCharArray();
+
+            foreach (char item in inputCharArray)
+            {
+                try
+                {
+                    int number = int.Parse(item.ToString());
+                    NumbersList.Add(number);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine($"Entry discarded: \"{item}\"");
+                }
+            }
+
+            List<int> NumbersListSorted = NumbersList
+                .OrderByDescending(number => number)
+                .ToList();
+
+            return NumbersListSorted;
         }
 
         public static WordsDTO FilePathToObjectConverter(string inputFilePath)
